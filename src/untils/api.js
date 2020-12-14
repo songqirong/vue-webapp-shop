@@ -27,6 +27,15 @@ export function fetchRegist(data) {
     })
 }
 
+// 获取用户详情 {}
+export function fetchGetUserInfo(data) {
+    return axios({
+        url: '/jd/getUserInfo',
+        method: 'POST',
+        data
+    })
+}
+
 // 登录 {username, password }
 export function fetchLogin(data) {
     return axios({
@@ -120,5 +129,6 @@ export default {
     fetchCartSubmit,
     fetchAllCates,
     fetchGoodsOfCate,
-    fetchGetBanner
+    fetchGetBanner,
+    fetchGetUserInfo
 }

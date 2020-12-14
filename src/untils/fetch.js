@@ -13,13 +13,16 @@ instance.interceptors.request.use(function(config){
     return Promise.reject(error);
 })
 instance.interceptors.response.use(function(response){
-    // console.log(response)
     if(response.status==200){
+        if(response.data.msg === 'token invalid'){
+            localStorage.removeItem('token');
+            location.href="http://localhost:8090/#/login"
+            return ;
+        }
         if(response.data&&response.data.success){
-
             return response.data.data;
         }else{
-            alert('网络异常，请求稍后再试')
+            alert('网络异常，请稍后再试')
         }
     }
 },function(error){

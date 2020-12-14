@@ -141,18 +141,21 @@ export default {
     methods:{
         init(){
             this.$http.fetchCartList({}).then(res=>{
-                if(res.data.length>0){
-                    this.desc=false;
-                }else{
-                    this.desc=true
+                if(!res){
+                    return ;
                 }
                 if(res.err==0){
-                    // console.log(res.data)
-                    res.data.map((item)=>{
-                        item.checked=false;    
-                    })
-                    this.cartArr=res.data
-                    this.checked=false
+                    if(res.data.length>0){
+                        this.desc=false;
+                        // console.log(res.data)
+                        res.data.map((item)=>{
+                            item.checked=false;    
+                        })
+                        this.cartArr=res.data
+                        this.checked=false
+                    }else{
+                        this.desc=true
+                    }
                 }else{
                     Toast.fail("购物车出错了")
                 }

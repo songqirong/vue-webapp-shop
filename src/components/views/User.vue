@@ -8,16 +8,16 @@
                         round
                         width="1.3rem"
                         height="1.3rem"
-                        src="https://img.yzcdn.cn/vant/cat.jpeg"
+                        :src="userInfo.user_avatar"
                     />
                 </van-col>
                 <van-col span="18">
                     <div>
                         <div>用户名</div>
-                        <div>liguangjun</div>
+                        <div>{{userInfo.username}}</div>
                         <div>
-                            <span>京享值:5000</span>
-                            <span>小白信用:96</span>
+                            <span class="first-span">京享值:{{userInfo.enjoys_value}}</span>
+                            <span>小白信用:{{userInfo.white_credit}}</span>
                             <span>></span>
                         </div>
                     </div>
@@ -108,7 +108,8 @@ export default {
             shareLink:'https://www.baidu.com/',
             base64: '',
             code: '',
-            visible: true
+            visible: true,
+            userInfo: {},
         };
     },
     components:{
@@ -123,6 +124,9 @@ export default {
         [CellGroup.name]:CellGroup,
         [Dialog.Component.name]: Dialog.Component,
     },
+    mounted(){
+        this.init()
+    },
     methods:{
         logout(){
             Toast.loading("退出登录中")
@@ -132,16 +136,15 @@ export default {
                 this.$router.push('/home')
             },1000)
         },
-        openModal(){
+        async openModal(){
             this.show = true;
-            generateImg(this.SHARE_CARD_ID, this.SHARE_CARD_CANVAS).then(res => {
-                 this.base64 = res;
-                generateQRCode(this.shareLink).then(res => {
-                    this.code = res;
-                    this.visible = false;
-                })
-            });
-
+            this.base64 = await generateImg(this.SHARE_CARD_ID, this.SHARE_CARD_CANVAS);
+            this.code = await generateQRCode(this.shareLink);
+            this.visible = false;
+        },
+        async init(){
+            const result = await this.$http.fetchGetUserInfo({});
+            this.userInfo = result
         }
     }
 }
@@ -154,6 +157,9 @@ export default {
             color: white;
             background-color: rgba(231, 170, 94, 1);
             padding: 0.426667rem;
+            .first-span{
+                margin-right: .133333rem;
+            }
         }
         .user-order {
             width: 100%;
@@ -164,7 +170,7 @@ export default {
         }
         .user-modal{
             width: 8rem;
-            height: 8rem;
+            height: 7rem;
             .img1{
                 height: 4rem;
                 width: 8rem;
