@@ -21,14 +21,14 @@
                 <span>热门搜索</span><b v-text='msg' @click="change"></b>
             </div>
             <ul class="content" v-show="show">
-                <li v-for="(item,index) in searchList" :key="item.id" :class="{on:index<3}" v-text='item'></li>    
+                <li v-for="(item,index) in searchList" :key="item.id" :class="{on:index<3}" v-text='item' @click="toSearch(item)"></li>    
             </ul>
             <div class="content2" v-show="!show">
                 已隐藏搜索发现
             </div>
         </div>
         <ul class="list" v-show="!hehe">
-            <li v-for="item in list" :key="item.id" v-text="item[0]"></li>
+            <li v-for="item in list" :key="item.id" v-html="item[0]"></li>
         </ul>
     </div>
 </template>
@@ -81,6 +81,10 @@ export default {
         },
         onSearch(){
             // console.log()
+        },
+        toSearch(val){
+            this.value =val
+            this.onInput()
         },
         oninput(){
 

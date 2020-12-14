@@ -10,7 +10,10 @@
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 // import home from './components/views/home'
-import{Lazyload} from 'vant';
+import{ 
+  Lazyload,
+  Loading,
+} from 'vant';
 import Vue from 'vue';
 Vue.filter('rmb',function(value){
   if(value){
@@ -20,6 +23,7 @@ Vue.filter('rmb',function(value){
   }
 })
 Vue.use(Lazyload);
+Vue.use(Loading);
 export default {
   name: 'App',
   components: {

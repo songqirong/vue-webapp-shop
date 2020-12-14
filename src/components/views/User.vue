@@ -1,9 +1,9 @@
 <template>
     <section class="user">
         <!-- 用户信息 -->
-        <div class="user-info">
+        <div class="user-info"  :id="SHARE_CARD_ID">
             <van-row type='flex' justify="center" align='center'>
-                <van-col span="5" offset="1">
+                <van-col span="5" offset="1" @click="openModal">
                     <van-image
                         round
                         width="1.3rem"
@@ -73,6 +73,13 @@
             <van-grid-item icon="balance-o" text="京东客户端" />
             <van-grid-item icon="user-circle-o" text="退出登录" @click="logout"/>
         </van-grid>
+        <!-- 弹出层 -->
+        <van-dialog v-model="show" title="用户信息" show-cancel-button class="user-modal">
+            <!-- 加载中 -->
+            <van-loading type="spinner" v-show="visible"/>
+            <img :src="base64" v-show="!visible" class="img1"/>
+            <img :src="code" alt="" v-show="!visible" class="code"/> 
+        </van-dialog>
         <tabbar></tabbar>
     </section>
 </template>
@@ -85,13 +92,25 @@ import {
     GridItem,
     Cell,
     CellGroup,
-    Toast
-
+    Toast,
+    Dialog,
 } from 'vant'; 
+import { generateImg, generateQRCode } from '@/untils/index';
 import {tabbar} from '../index'
 // console.log(tabbar)
 export default {
     name:'user',
+    data() {
+        return {
+            show: false,
+            SHARE_CARD_ID: 'SHARE_CARD_ID',
+            SHARE_CARD_CANVAS: 'SHARE_CARD_CANVAS',
+            shareLink:'https://www.baidu.com/',
+            base64: '',
+            code: '',
+            visible: true
+        };
+    },
     components:{
         // [Button.name]:Button,
         tabbar,
@@ -101,7 +120,8 @@ export default {
         [Grid.name]:Grid,
         [GridItem.name]:GridItem,
         [Cell.name]:Cell,
-        [CellGroup.name]:CellGroup
+        [CellGroup.name]:CellGroup,
+        [Dialog.Component.name]: Dialog.Component,
     },
     methods:{
         logout(){
@@ -111,6 +131,17 @@ export default {
                 Toast.success("注销成功")
                 this.$router.push('/home')
             },1000)
+        },
+        openModal(){
+            this.show = true;
+            generateImg(this.SHARE_CARD_ID, this.SHARE_CARD_CANVAS).then(res => {
+                 this.base64 = res;
+                generateQRCode(this.shareLink).then(res => {
+                    this.code = res;
+                    this.visible = false;
+                })
+            });
+
         }
     }
 }
@@ -130,6 +161,22 @@ export default {
         }
         .van-cell-group__title {
             line-height: 0.8rem;
+        }
+        .user-modal{
+            width: 8rem;
+            height: 8rem;
+            .img1{
+                height: 4rem;
+                width: 8rem;
+            }
+            .code{
+                position: absolute;
+                right: .5rem;
+                top: 2rem;
+                z-index: 5;
+                height: 2rem;
+                width: 2rem;
+            }
         }
     }
     
