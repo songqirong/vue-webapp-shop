@@ -1,16 +1,6 @@
 <template>
     <div class="detail">
-        <van-nav-bar 
-            title="商品详情" 
-            left-text="返回" 
-            left-arrow 
-            fixed
-            @click-left='back'
-        >
-            <template #right>
-                <van-icon name="search" size="18" />
-            </template>
-        </van-nav-bar>
+        <navbar title="商品详情" />
         <img :src="img.imgBaseUrl+good.img" alt="">
         <h3 v-text="good.name"></h3>
         <h4 v-text="good.desc"></h4>
@@ -44,6 +34,7 @@ import {
     NavBar,
     Icon
 }from 'vant';
+import { navbar } from '../index';
 import img from '@/untils/img'
 export default {
     name:'detail',
@@ -59,7 +50,8 @@ export default {
         [GoodsActionButton.name]:GoodsActionButton,
         [Toast.name]:Toast,
         [NavBar.name]:NavBar,
-        [Icon.name]:Icon
+        [Icon.name]:Icon,
+        navbar,
     },
     mounted(){
         // console.log(this.$router)

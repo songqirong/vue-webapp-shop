@@ -56,7 +56,7 @@ import img from '@/untils/img'
 import {mapState,mapGetters,mapMutations} from 'vuex'
 // console.log(tabbar)
 export default {
-    name:'home',
+    name:'find',
     data:function(){
         return {
             value:'',

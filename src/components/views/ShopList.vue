@@ -1,17 +1,6 @@
 <template>
     <section class="shoplist">
-        <!-- 顶部NavBar -->
-        <van-nav-bar 
-            title="购物车" 
-            left-text="返回" 
-            left-arrow 
-            fixed
-            @click-left='back'
-        >
-            <template #right>
-                <van-icon name="search" size="18" @click="onClick"/>
-            </template>
-        </van-nav-bar>
+        <navbar title="购物车"/>
         <!-- 分割线 -->
         <van-divider
                 :style="{ borderColor: '#999',margin:0}"
@@ -65,13 +54,12 @@ import {
     Button,
     SubmitBar,
     Checkbox, 
-    Icon,
-    NavBar,
-    SwipeCell,
-    Col, 
     Row,
+    Col,
+    SwipeCell,
     Toast
 } from 'vant'; 
+import { navbar } from '../index';
 import img from '@/untils/img'
 // import {tabbar} from '../index'
 // console.log(tabbar)
@@ -88,7 +76,7 @@ export default {
     //         next('/login')
     //     }
     // },
-    name:'home',
+    name:'shopList',
     data:function(){
         return{
             value:'',
@@ -116,17 +104,16 @@ export default {
         // }
     },
     components:{
-        [NavBar.name]: NavBar,
+        navbar,
         [Divider.name]: Divider,
         [Card.name]:Card,
         [Button.name]:Button,
         [SubmitBar.name]:SubmitBar,
         [Checkbox.name]:Checkbox,
-        [Icon.name]: Icon,
         [SwipeCell.name]:SwipeCell,
-        [Col.name]:Col,
+        [Toast.name]:Toast,
         [Row.name]:Row,
-        [Toast.name]:Toast
+        [Col.name]:Col,
         // tabbar
     },
     mounted(){
@@ -151,11 +138,11 @@ export default {
                         res.data.map((item)=>{
                             item.checked=false;    
                         })
-                        this.cartArr=res.data
-                        this.checked=false
                     }else{
                         this.desc=true
                     }
+                    this.cartArr=res.data
+                    this.checked=false
                 }else{
                     Toast.fail("购物车出错了")
                 }

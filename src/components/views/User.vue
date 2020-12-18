@@ -34,7 +34,7 @@
             </van-grid>
         </div>
         <van-cell-group title="地址">
-            <van-cell value="单元格" is-link>
+            <van-cell value="管理我的地址" is-link to="/address">
                 <template #title>
                     <span class="custom-title">收货地址管理</span>
                 </template>
@@ -145,7 +145,7 @@ export default {
         async init(){
             const result = await this.$http.fetchGetUserInfo({});
             this.userInfo = result
-        }
+        },
     }
 }
 </script>

@@ -135,7 +135,7 @@ export default {
             font-size: 0.4rem;
         }
         .header-btn{
-            padding: 0.133333rem 0.1rem;
+            padding: 0.133333rem 0.4rem;
             font-size: 0.4rem;
             background-color: red;
             border-radius: 0.133333rem;

@@ -36,6 +36,33 @@ export function fetchGetUserInfo(data) {
     })
 }
 
+// 获取用户收货地址列表 {}
+export function fetchGetAddressList(params) {
+    return axios({
+        url: '/jd/getAddressList',
+        method: 'GET',
+        params
+    })
+}
+
+// 新增用户收货地址 {}
+export function fetchAddAddressList(data) {
+    return axios({
+        url: '/jd/addressList',
+        method: 'POST',
+        data
+    })
+}
+
+// 删除用户收货地址 {id}
+export function fetchDeleteAddressList(params) {
+    return axios({
+        url: '/jd/addressList',
+        method: 'DELETE',
+        params
+    })
+}
+
 // 登录 {username, password }
 export function fetchLogin(data) {
     return axios({
@@ -130,5 +157,8 @@ export default {
     fetchAllCates,
     fetchGoodsOfCate,
     fetchGetBanner,
-    fetchGetUserInfo
+    fetchGetUserInfo,
+    fetchGetAddressList,
+    fetchAddAddressList,
+    fetchDeleteAddressList
 }
