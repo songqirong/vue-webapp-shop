@@ -61,16 +61,14 @@ export default {
             // console.log('submit', values);
             Toast.loading('登录中')
             this.$http.fetchLogin(values).then(res=>{
-                // console.log(res)
-                
+                // console.log(res)  
                 if(res.err==0){
                     // Toast.clear();
                     Toast.success("登录成功");
-                    this.$router.back(),
-                    localStorage.setItem('token',res.token)
+                    this.$router.back();
+                    localStorage.setItem('token',res.token);
                 }else{
                     Toast.fail("用户名或密码错误");
-
                 }
             })
         },
