@@ -4,7 +4,7 @@
         <van-tabbar-item icon="search" to='/find'>分类</van-tabbar-item>
         <van-tabbar-item icon="friends-o" to='/shoplist'>购物车</van-tabbar-item>
         <van-tabbar-item icon="setting-o" to='/user' v-show="show">个人中心</van-tabbar-item>
-        <van-tabbar-item icon="setting-o" to='/user' v-show="!show">未登录</van-tabbar-item>
+        <van-tabbar-item icon="setting-o" to='/login' v-show="!show">未登录</van-tabbar-item>
     </van-tabbar>
 </template>
 <script>

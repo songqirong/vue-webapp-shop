@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-const Home = ()=>import('./components/views/Home.vue')
+const Home = async()=> await import('./components/views/Home.vue')
 // console.log(Home)
 const Find = ()=>import('./components/views/Find.vue')
 const ShopList = ()=>import('./components/views/ShopList.vue')
@@ -13,7 +13,7 @@ const Address = ()=>import('./components/views/Address.vue')
 const AddressEditor = ()=>import('./components/views/AddressEditor.vue')
 Vue.use(VueRouter);
 const router = new VueRouter({
-    mode:'hash',
+    mode:'history',
     routes:[
         {
             path:'/home',component:Home, name: 'home'

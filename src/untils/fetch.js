@@ -1,5 +1,5 @@
 import axios from 'axios';
-let baseURL = 'http://localhost:8090/api/v1'
+let baseURL = 'https://api.persion.cn/api/v1'
 const instance = axios.create({
     baseURL,
     timeout:7000,
@@ -16,7 +16,7 @@ instance.interceptors.response.use(function(response){
     if(response.status==200){
         if(response.data.msg === 'token invalid'){
             localStorage.removeItem('token');
-            location.href="http://localhost:8090/#/login"
+            location.href="/login"
             return ;
         }
         if(response.data&&response.data.success){
