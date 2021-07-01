@@ -1,7 +1,7 @@
 <template>
     <div class="detail">
         <navbar title="商品详情" />
-        <img :src="img.imgBaseUrl+good.img" alt="">
+        <img :src="good.img" alt="">
         <h3 v-text="good.name"></h3>
         <h4 v-text="good.desc"></h4>
         <h5>{{good.price|rmb}}</h5>
@@ -35,13 +35,11 @@ import {
     Icon
 }from 'vant';
 import { navbar } from '../index';
-import img from '@/untils/img'
 export default {
     name:'detail',
     data(){
         return {
             good:{},
-            img
         }
     },
     components:{

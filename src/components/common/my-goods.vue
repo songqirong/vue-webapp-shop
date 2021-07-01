@@ -1,12 +1,11 @@
 <template>
         <li class="item" @click="linktoDetail">
-            <img :src="img.imgBaseUrl+goodItem.img" alt="">
+            <img :src="goodItem.img" alt="">
             <div v-text="goodItem.name"></div>
             <div>{{goodItem.price|rmb}}</div>  
         </li>
 </template>
 <script>
-import img from '@/untils/img'
 export default {
     props:{
         goodItem:{
@@ -21,7 +20,6 @@ export default {
     },
     data(){
         return{
-            img
         }
     }
 }

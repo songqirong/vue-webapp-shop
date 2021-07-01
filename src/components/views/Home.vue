@@ -36,7 +36,7 @@
             <div class="banner">
                 <van-swipe :autoplay="5000">
                     <van-swipe-item v-for="(item, index) in images" :key="index">
-                        <img v-lazy="img.imgBaseUrl+item.img" />
+                        <img v-lazy="item.img" />
                     </van-swipe-item>
                 </van-swipe>
             </div>
@@ -78,7 +78,6 @@ import {
     Icon,
     Sticky
 } from 'vant';
-import img from '@/untils/img';
 import {tabbar,goods} from '../index';
 import {mapGetters} from 'vuex'
 // console.log(tabbar)
@@ -115,7 +114,6 @@ export default {
     },
    data:function(){
        return{
-            img,
             value:'',
             images: [],
             loading:false,

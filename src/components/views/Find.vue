@@ -33,7 +33,7 @@
                 <h2>热门分类</h2>
                 <van-grid :border="false" :column-num="3">
                     <van-grid-item v-for="item in goods" :key="item.id" @click='linktoDetail(item)'>
-                        <img :src="img.imgBaseUrl+item.img" />
+                        <img :src="item.img" />
                         <h3 v-text="item.name"></h3>
                     </van-grid-item>
                 </van-grid>
@@ -52,7 +52,6 @@ import {
     Toast
     } from 'vant'; 
 import {tabbar} from '../index'
-import img from '@/untils/img'
 import {mapState,mapGetters,mapMutations} from 'vuex'
 // console.log(tabbar)
 export default {
@@ -63,7 +62,6 @@ export default {
             finds:[],
             goods:[],
             idx:0,
-            img
         }
     },
     computed:{

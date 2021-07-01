@@ -21,7 +21,7 @@
                             :desc="item.good.desc"
                             :title="item.good.name"
                             class="goods-card"
-                            :thumb="img.imgBaseUrl+item.good.img"
+                            :thumb="item.good.img"
                             >
                             <template #price>
                                 <div class="good_price">{{item.good.price|rmb}}</div>
@@ -60,9 +60,6 @@ import {
     Toast
 } from 'vant'; 
 import { navbar } from '../index';
-import img from '@/untils/img'
-// import {tabbar} from '../index'
-// console.log(tabbar)
 
 export default {
     // 局部路由守卫
@@ -84,7 +81,6 @@ export default {
             cartArr:[],
             show:true,
             desc:true,
-            img
         }
     },
     computed:{
