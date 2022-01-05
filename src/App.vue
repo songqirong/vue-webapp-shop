@@ -25,11 +25,7 @@ Vue.filter('rmb',function(value){
 Vue.use(Lazyload);
 Vue.use(Loading);
 export default {
-  name: 'App',
-  components: {
-    // HelloWorld
-    // home
-  }
+  name: 'App'
 }
 </script>
 

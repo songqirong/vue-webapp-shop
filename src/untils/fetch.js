@@ -1,5 +1,5 @@
 import axios from 'axios';
-let baseURL = 'https://api.persion.cn/api/v1'
+let baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8090/api/v1' : 'https://api.persion.cn/api/v1'
 const instance = axios.create({
     baseURL,
     timeout:7000,

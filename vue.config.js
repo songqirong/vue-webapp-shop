@@ -5,7 +5,7 @@ module.exports={
         // 代理配置
         proxy: {
             '/api': {
-              target: 'https://api.persion.cn',  // 是接口所在的服务器地址
+              target: 'http://localhost:3030',  // 是接口所在的服务器地址
               ws: true,
               changeOrigin: true
             },
