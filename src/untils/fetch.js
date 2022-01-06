@@ -2,8 +2,7 @@ import axios from 'axios';
 let baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:8090/api/v1' : 'https://shopapi.persion.cn/api/v1'
 const instance = axios.create({
     baseURL,
-    timeout:7000,
-    headers:{}
+    timeout:7000
 })
 instance.interceptors.request.use(function(config){
     // token 的作用，是用户鉴权
